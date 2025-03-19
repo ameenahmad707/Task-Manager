@@ -12,11 +12,12 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
-    <div class="container">        
+    <div class="container">
         <!-- Add Task Form -->
         <form action="/tasks" method="POST">
             @csrf
             <input type="text" name="title" placeholder="New Task" required>
+            <textarea name="description" placeholder="Task Description"></textarea>
             <button type="submit">Add</button>
         </form>
 
@@ -24,29 +25,27 @@
         <ul>
             @foreach($tasks as $task)
                 <li>
-                    <div>
-                        <a href="/tasks/{{ $task->id }}/edit" class="edit-btn">Edit</a>
-                        <form action="/tasks/{{ $task->id }}" method="POST" style="display:inline;">
-                            @csrf @method('DELETE')
-                            <button type="submit" class="delete-btn">Delete</button>
-                        </form>
-                    </div>
-                </li>
-                <li>
                     <form action="/tasks/{{ $task->id }}/toggle" method="POST">
                         @csrf @method('PATCH')
                         <input type="checkbox" onchange="this.form.submit()" {{ $task->is_completed ? 'checked' : '' }}>
                     </form>
+                    
                     <span style="{{ $task->is_completed ? 'text-decoration: line-through;' : '' }}">
                         {{ $task->title }}
                     </span>
+                    
+                    <form action="/tasks/{{ $task->id }}" method="POST" style="display:inline;">
+                    @csrf @method('DELETE')
+                    <button type="submit">Delete</button>
+                    <a class="ed-tsk"href="{{ route('tasks.edit', $task->id) }}">Edit Task</a>
+                    </form>
                 </li>
-                @if(session('success'))
+            @endforeach
+            @if(session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
                 </div>
                 @endif
-            @endforeach
             <p>Go Back to your <a href="{{ route('dashboard') }}">Dashboard</a></p>
         </ul>
     </div>

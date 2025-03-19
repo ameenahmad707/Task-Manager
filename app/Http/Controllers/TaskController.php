@@ -16,9 +16,16 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate(['title' => 'required']);
-        Task::create($request->all());
-        return redirect('/tasks');
+        $request->validate([
+            'title' => 'required|max:255',
+        ]);
+
+        Task::create([
+            'title' => $request->title,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->back()->with('success', 'Task Created!');
     }
 
     public function edit($id)
@@ -30,13 +37,22 @@ class TaskController extends Controller
         }
 
         return view('tasks.edit', compact('task'));
+        return redirect('/tasks')->with('success', 'Task updated successfully!');
     }
 
 
     public function update(Request $request, Task $task)
     {
-        $task->update($request->all());
-        return redirect('/tasks');
+        $request->validate([
+            'title' => 'required|max:255',
+        ]);
+
+        $task->update([
+            'title' => $request->title,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->back()->with('success', 'Task Updated!');
     }
 
     public function toggleComplete($id)
@@ -53,6 +69,7 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         $task->delete();
-        return redirect('/tasks');
+        return redirect()->back()->with('success', 'Task Deleted!');
     }
+
 }

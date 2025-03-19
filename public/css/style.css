@@ -1,7 +1,10 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&display=swap');
+
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Nunito', sans-serif;
+    background: #f3f4f6;
     margin: 0;
     padding: 0;
     display: flex;
@@ -10,45 +13,71 @@ body {
     min-height: 100vh;
 }
 
-/* Container */
+/* Main Container */
 .container {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 400px;
-    text-align: center;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 450px;
 }
 
-/* Heading */
-h1 {
-    color: #333;
-}
-
-/* Form Styling */
+/* Form Styles */
 form {
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
 }
 
-input[type="text"] {
-    width: 80%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+input[type="text"], 
+textarea {
+    width: 95%;
+    padding: 12px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: 0.3s;
 }
 
+input[type="text"]:focus, 
+textarea:focus {
+    border-color: #6c5ce7;
+    outline: none;
+}
+
+/* Buttons */
 button {
-    background-color: #28a745;
+    background-color: #6c5ce7;
     color: white;
-    margin: 10px;
-    padding: 10px 15px;
+    padding: 10px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
+    font-size: 16px;
     cursor: pointer;
+    transition: 0.3s;
+    margin-top: 8px;
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #574b90;
+}
+
+/* Edit Link */
+.ed-tsk {
+    background-color: #0984e3;
+    color: white;
+    padding: 12px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+    margin-left: 5px;
+}
+
+.ed-tsk:hover {
+    background-color: #0658a3;
 }
 
 /* Task List */
@@ -58,41 +87,53 @@ ul {
 }
 
 li {
-    background: #fff;
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 5px;
+    background: #ffffff;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 8px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    transition: 0.3s;
 }
 
-/* Edit and Delete Buttons */
-.edit-btn {
-    background-color: #ffc107;
+li:hover {
+    background: #f8f9fa;
 }
 
-.edit-btn:hover {
-    background-color: #e0a800;
+/* Checkbox Styling */
+input[type="checkbox"] {
+    transform: scale(1.3);
+    margin-right: 10px;
+    cursor: pointer;
 }
 
-.delete-btn {
-    background-color: #dc3545;
+/* Completed Task */
+.completed {
+    text-decoration: line-through;
+    color: gray;
 }
 
-.delete-btn:hover {
-    background-color: #c82333;
+/* Success Message */
+.alert-success {
+    background: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    text-align: center;
 }
 
-/* Link Styling */
-a {
-    padding: 10px 15px;
+/* Dashboard Link */
+p a {
+    background: none;
+    color: #6c5ce7;
+    font-weight: bold;
     text-decoration: none;
-    color: #333;
-    border-radius: 5px;
+    font-size: 14px;
 }
 
-a:hover {
+p a:hover {
     text-decoration: underline;
 }
